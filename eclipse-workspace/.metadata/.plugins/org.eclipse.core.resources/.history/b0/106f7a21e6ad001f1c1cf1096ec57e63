@@ -1,0 +1,28 @@
+package br.ufg.inf.backend;
+
+import java.io.IOException;
+
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class CalculadoraServlet extends HttpServlet{
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String num1 = req.getParameter("num1");
+		String num2 = req.getParameter("num2");
+		String operacao = req.getParameter("operacao");
+		
+		String mensagem = "Operacao inforamada é inválida: " + operacao;
+		double resultado;
+		
+		Switch (operacao){
+			case "soma":
+				resultado = numero1+numero2;
+				mensagem=""
+		}
+		
+	}
+	
+}
