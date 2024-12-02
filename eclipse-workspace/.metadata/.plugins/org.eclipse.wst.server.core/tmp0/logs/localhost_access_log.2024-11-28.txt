@@ -2,3 +2,6 @@
 0:0:0:0:0:0:0:1 - - [28/Nov/2024:21:05:03 -0300] "GET /Aula1/WEB-INF/classes/br/ufg/inf/backend/HelloServlet.java HTTP/1.1" 404 683
 0:0:0:0:0:0:0:1 - - [28/Nov/2024:21:05:03 -0300] "GET /favicon.ico HTTP/1.1" 404 763
 0:0:0:0:0:0:0:1 - - [28/Nov/2024:21:05:57 -0300] "GET /Aula1/ HTTP/1.1" 404 762
+127.0.0.1 - - [28/Nov/2024:21:12:48 -0300] "GET / HTTP/1.1" 404 764
+0:0:0:0:0:0:0:1 - - [28/Nov/2024:21:12:48 -0300] "GET /Aula1/WEB-INF/classes/br/ufg/inf/backend/CalculadoraServlet.java HTTP/1.1" 404 683
+0:0:0:0:0:0:0:1 - - [28/Nov/2024:21:12:49 -0300] "GET /favicon.ico HTTP/1.1" 404 763
