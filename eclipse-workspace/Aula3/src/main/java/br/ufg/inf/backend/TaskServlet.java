@@ -6,73 +6,59 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 @WebServlet("/task")
 public class TaskServlet extends HttpServlet {
-    ArrayList<String> taskList = new ArrayList<>();
+
+    TaskService taskService = new TaskService();
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      if (taskList.isEmpty()) response.getWriter().println("A lista de tarefas esta vazia!");
-      for(int i = 0; i < taskList.size(); i++)
-        response.getWriter().println((i+1) + taskList.get(i));
-    }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      try {
-        String task = request.getParameter("task").trim();
-        if (task.isEmpty())  {
-          response.getWriter().println( "A tarefa não pode ser vazia!" );
-          return;
+    protected void doGet(HttpServletRequest request, HttpServletResponse
+            response) throws ServletException, IOException {
+        try{
+            response.getWriter().println(taskService.list());
+        } catch (FileNotFoundException e) {
+            response.getWriter().println( e.getMessage() );
         }
-        taskList.add(task);
-        response.getWriter().println( "A tarefa '" + task + "' foi adicionada!" );
-      } catch (NullPointerException e){
-          response.getWriter().println("A tarefa não pode estar vazia");
-      } catch (Exception e) {
-          response.getWriter().println("Erro, valores não são válidos.");
-          response.getWriter().println("ERRO: " + e.getMessage());
-      }
     }
+
     @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      try{
-        String task = request.getParameter("task").trim();
-        if (task.isEmpty()) {
-          response.getWriter().println( "A tarefa não pode ser vazia!" );
-          return;
+    protected void doPost(HttpServletRequest request, HttpServletResponse
+            response) throws ServletException, IOException {
+        try {
+            String task = request.getParameter("task");
+
+            response.getWriter().println(taskService.add(task));
+        } catch (Exception e) {
+            response.getWriter().println( e.getMessage() );
         }
-        int index = Integer.parseInt(request.getParameter("index"));
-        String oldTask = taskList.get(index-1);
-        taskList.set(index-1, task);
-        response.getWriter().println( "A tarefa '" + oldTask + "' foi modificada para '" + task );
-      } catch (IndexOutOfBoundsException e) {
-          response.getWriter().println("Não existe tarefa para o indice informado!");
-      } catch (NumberFormatException e) {
-          response.getWriter().println("Valor de indice inválido!");
-      } catch (NullPointerException e) {
-          response.getWriter().println("A tarefa não pode ser vazia!");
-      } catch (Exception e) {
-          response.getWriter().println("Erro, valores não são válidos.");
-          response.getWriter().println("ERRO: " + e.getMessage());
-      }
     }
+
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      try {
-        int index = Integer.parseInt(request.getParameter("index"));
-        String oldTask = taskList.get(index-1);
-        taskList.remove(index-1);
-        response.getWriter().println( "A tarefa '" + oldTask + "' foi removida!" );
-      } catch (IndexOutOfBoundsException e) {
-          response.getWriter().println("Não existe tarefa para o indice informado!");
-      } catch (NumberFormatException e) {
-          response.getWriter().println("Valor de indice inválido!");
-      } catch (Exception e) {
-          response.getWriter().println("Erro, valores não são válidos.");
-          response.getWriter().println("ERRO: " + e.getMessage());
-      }
+    protected void doPut(HttpServletRequest request, HttpServletResponse
+            response) throws ServletException, IOException {
+        try {
+            String task = request.getParameter("task");
+            int index = Integer.parseInt(request.getParameter("index"));
+
+            response.getWriter().println(taskService.update(index, task));
+        } catch (Exception e) {
+            response.getWriter().println( e.getMessage() );
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse
+            response) throws ServletException, IOException {
+        try {
+            int index = Integer.parseInt(request.getParameter("index"));
+
+            response.getWriter().println(taskService.remove(index));
+        } catch (Exception e) {
+            response.getWriter().println( e.getMessage() );
+        }
     }
 }

@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "90979a7c-9e09-4a93-96a7-09746a2e7c0c",
+		"name": "API Atividade 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32952908"
+	},
+	"item": [
+		{
+			"name": "Atividade3",
+			"item": [
+				{
+					"name": "task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade_3/task",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade_3",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade_3/task?task=Fazer algo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade_3",
+								"task"
+							],
+							"query": [
+								{
+									"key": "task",
+									"value": "Fazer algo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade_3/task?index=1&task=Outro algo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade_3",
+								"task"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "1"
+								},
+								{
+									"key": "task",
+									"value": "Outro algo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade_3/task?index=0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade_3",
+								"task"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
