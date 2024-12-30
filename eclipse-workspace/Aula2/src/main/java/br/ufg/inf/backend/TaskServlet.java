@@ -71,7 +71,7 @@ public class TaskServlet extends HttpServlet {
       } catch (NumberFormatException e) {
           response.getWriter().println("Valor de indice inválido!");
       } catch (Exception e) {
-          response.getWriter().println("Erro, valores não são válidos.");
+          response.getWriter().println("Erro! valores não são válidos.");
           response.getWriter().println("ERRO: " + e.getMessage());
       }
     }
